@@ -1,0 +1,54 @@
+.clouds-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 1;
+    will-change: transform, opacity; /* Указываем, какие свойства будут анимироваться */
+    transition: opacity 0.5s ease-out;
+}
+
+/* Скрытие облаков */
+.clouds-container.hidden {
+    opacity: 0;
+}
+
+.clouds-container.visible {
+    opacity: 1;
+}
+
+/* Общее оформление для всех облаков */
+.cloud {
+    position: absolute;
+    bottom: 0;
+    animation: moveClouds linear infinite;
+}
+
+/* Первое облако (более непрозрачное) */
+.cloud1 {
+    z-index: 1;
+    opacity: 1; /* Максимальная непрозрачность */
+    animation-duration: 60s; /* Быстрее */
+}
+
+/* Второе облако (менее непрозрачное) */
+.cloud2 {
+    z-index: 0;
+    opacity: 0.6; /* Меньшая непрозрачность */
+    animation-duration: 70s; /* Медленнее */
+    animation-delay: -5s; /* Задержка для второго облака */
+}
+
+/* Анимация движения облаков */
+@keyframes moveClouds {
+    0% {
+        transform: translateX(-100%); /* Начало анимации за пределами слева */
+    }
+    100% {
+        transform: translateX(100vw); /* Заканчивается за пределами справа */
+    }
+}
